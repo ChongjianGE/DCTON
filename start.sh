@@ -6,6 +6,9 @@
 
 #python3 /apdcephfs/share_1016399/chongjiange/code/cyclegan_10/test_model_general.py --name disunified_tryon_halfa1_bzbackskinok_vggcw_1l1_9GApre/ --num_test 30000 --model disunified_tryon --dataroot /apdcephfs/share_1016399/chongjiange/data/try_on_data/256_test_data/ --checkpoints_dir /apdcephfs/share_1016399/chongjiange/train_output/cycletryon/checkpoints/ --gpu_ids 0
 
+python3 /apdcephfs/share_1016399/chongjiange/code/cyclegan_10/test_model_general.py --name 	display_refine_1l1c_0vgg_10agback_400 --num_test 30000 --model disunified_tryon --dataroot /apdcephfs/share_1016399/chongjiange/data/try_on_data/256_test_data/ --checkpoints_dir /apdcephfs/share_1016399/chongjiange/train_output/cycletryon/checkpoints/ --gpu_ids 0
+
+
 
 python3 disunified_net.py \
 	--name display \
