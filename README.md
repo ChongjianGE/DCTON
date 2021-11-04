@@ -11,14 +11,45 @@
 - cuda 10.0
 - opencv
 
+To install requirements:
+```setup
+conda create -n dcton python=3.6
+conda activate dcton
+conda install pytorch==1.0.10 torchvision==0.3.0 cuda100
+pip install tensorboardX
+pip install opencv-python
+pip install imdb
+pip install tqdm
+```
+
 ## Dataset
-[VITON](https://github.com/xthan/VITON)
+For data preparation, please refer to [VITON](https://github.com/xthan/VITON).
 
 ## Run the Demo
+Download [trained weights](https://drive.google.com/drive/folders/1Ej6BmuBHaR9d2flUabjpiqjzfsQPZvqt?usp=sharing).
+
+We here provide some data in 'demo_data' file for demo running.
+```setup
+# Demo data running
+bash test.sh
+```
+
+## License
+The use of this code is restricted to non-commercial research.
+
+## Acknowledgement 
+Thanks for [pytorch-CycleGAN-and-pix2pix](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) for providing the useful codes.
 
 ## Citation
+If you think our work is useful, please feel free to cite.
 ```
-WIP
+@inproceedings{ge2021disentangled,
+  title={Disentangled Cycle Consistency for Highly-realistic Virtual Try-On},
+  author={Ge, Chongjian and Song, Yibing and Ge, Yuying and Yang, Han and Liu, Wei and Luo, Ping},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={16928--16937},
+  year={2021}
+}
 ```
 
 
