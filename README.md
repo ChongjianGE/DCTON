@@ -27,6 +27,7 @@ For data preparation, please refer to [VITON](https://github.com/xthan/VITON).
 
 ## Run the Demo
 Download [trained weights](https://drive.google.com/drive/folders/1Ej6BmuBHaR9d2flUabjpiqjzfsQPZvqt?usp=sharing).
+Put the trained weights in the 'pretrained_model' file.
 
 We here provide some data in 'demo_data' file for demo running.
 ```setup
