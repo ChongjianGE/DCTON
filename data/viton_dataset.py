@@ -83,21 +83,15 @@ class VITONDataset(BaseDataset):
             clothes_paths = []
             densepose_paths = []
             names = []
-            with open('/apdcephfs/share_1016399/chongjiange/code/cyclegan_10/test_pairs.txt', 'r') as f:
+            with open('./demo_data/test.txt', 'r') as f:
                 for line in f.readlines():
                     im_name, c_name = line.strip().split()
                     # c_name = im_name.split('_')[0]+'_1.jpg'
-                    img_paths.append(
-                        os.path.join('/apdcephfs/share_1016399/chongjiange/data/try_on_data/256_test_data/test_img/', im_name))
-                    label_paths.append(
-                        os.path.join('/apdcephfs/share_1016399/chongjiange/data/try_on_data/256_test_data/test_label/', im_name.replace('.jpg', '.png')))
-                    edge_paths.append(
-                        os.path.join('/apdcephfs/share_1016399/chongjiange/data/try_on_data/256_test_data/test_edge/', c_name))
-                    clothes_paths.append(
-                        os.path.join('/apdcephfs/share_1016399/chongjiange/data/try_on_data/256_test_data/test_color/', c_name))
-                    densepose_paths.append(os.path.join(
-                        '/apdcephfs/share_1016399/chongjiange/data/try_on_data/256_test_data/test_densepose/',
-                        im_name.replace('.jpg', '.npy')))
+                    img_paths.append(os.path.join('./demo_data/test_img/', im_name))
+                    label_paths.append(os.path.join('./demo_data/test_label/', im_name.replace('.jpg', '.png')))
+                    edge_paths.append(os.path.join('./demo_data/test_edge/', c_name))
+                    clothes_paths.append(os.path.join('./demo_data/test_color/', c_name))
+                    densepose_paths.append(os.path.join('./demo_data/test_densepose/', im_name.replace('.jpg', '.npy')))
                     names.append(im_name.replace('.jpg', '_') + c_name)
 
             self.img_paths = img_paths

@@ -29,10 +29,6 @@ class DCTONModel(BaseModel):
         self.loss_names = ['l1_clothes', 'vgg_clothes', 'l1_agnostic', 'l1_skin', 'l1_back', 'cycle', 'cycle_arm']
         self.name = opt.name
 
-        '''if self.isTrain and self.opt.lambda_identity > 0.0:  
-            visual_names_A.append('idt_B')
-            visual_names_B.append('idt_A')'''
-
         if self.isTrain:
             self.model_names = ['G_A', 'G_EA', 'G_EB', 'G_EC', 'G_D', 'G_EA2', 'G_EB2', 'G_EC2', 'G_D2', 'D_A']
         else:  # during test time, only load Gs
@@ -43,8 +39,8 @@ class DCTONModel(BaseModel):
         self.netG_EA, self.netG_EB, self.netG_EC, self.netG_D = networks.define_unified_G(3, 5, 3, 3, opt.ngf, opt.init_type, opt.init_gain, self.gpu_ids)
         self.netG_EA2, self.netG_EB2, self.netG_EC2, self.netG_D2 = networks.define_unified_G(3, 5, 3, 3, opt.ngf, opt.init_type, opt.init_gain, self.gpu_ids)
 
-        self.network_loading(self.netG_B, '/apdcephfs/share_1016399/chongjiange/pretrained_models/densepose_to_mask_models/latest_net_U.pth')
-        self.network_loading(self.netG_A, '/apdcephfs/share_1016399/chongjiange/pretrained_models/dense_low_mask/9_net_G_A.pth')
+        self.network_loading(self.netG_B, './pretrained_model/latest_net_U.pth')
+        self.network_loading(self.netG_A, './pretrained_model/latest_net_G_A.pth')
         self.netG_A.eval()
         self.netG_B.eval()
         self.set_requires_grad([self.netG_A, self.netG_B], False)
@@ -83,10 +79,10 @@ class DCTONModel(BaseModel):
 
         if not opt.isTrain:
             print(opt.name)
-            self.network_loading(self.netG_EA2, '/apdcephfs/share_1016399/chongjiange/train_output/cycletryon/checkpoints/' + opt.name + '/latest_net_G_EA2.pth')
-            self.network_loading(self.netG_EB2, '/apdcephfs/share_1016399/chongjiange/train_output/cycletryon/checkpoints/' + opt.name + '/latest_net_G_EB2.pth')
-            self.network_loading(self.netG_EC2, '/apdcephfs/share_1016399/chongjiange/train_output/cycletryon/checkpoints/' + opt.name + '/latest_net_G_EC2.pth')
-            self.network_loading(self.netG_D2, '/apdcephfs/share_1016399/chongjiange/train_output/cycletryon/checkpoints/' + opt.name + '/latest_net_G_D2.pth')
+            self.network_loading(self.netG_EA2, './pretrained_model/latest_net_G_EA2.pth')
+            self.network_loading(self.netG_EB2, './pretrained_model/latest_net_G_EB2.pth')
+            self.network_loading(self.netG_EC2, './pretrained_model/latest_net_G_EC2.pth')
+            self.network_loading(self.netG_D2, './pretrained_model/latest_net_G_D2.pth')
 
             self.netG_EA2.eval()
             self.netG_EB2.eval()
@@ -202,27 +198,10 @@ class DCTONModel(BaseModel):
         pass
 
     def backward_D_basic(self, netD, real1, fake1, fake2):  # 1arm 2cloth
-        # Real 1 for arm, 2 for cloth
-        '''loss_D_real = self.criterionGAN(netD(real1), True)
-
-        # Fake
-        pred_fake_1 = netD(fake1.detach())
-        loss_D_fake_1 = self.criterionGAN(pred_fake_1, False)
-        pred_fake_2 = netD(fake2.detach())
-        loss_D_fake_2 = self.criterionGAN(pred_fake_2, False)
-
-        # Combined loss and calculate gradients
-        loss_D = loss_D_real + (loss_D_fake_1 + loss_D_fake_2) / 2
-
-        loss_D.backward()
-        return loss_D'''
         pass
 
     def backward_D_A(self):
-        """Calculate GAN loss for discriminator D_B"""
-        '''fake_A = self.fake_A_pool.query(self.parsing_arm_b * self.fake_b)
-        fake_B = self.fake_B_pool.query(self.parsing_arm_a * self.fake_a)
-        self.loss_D_A = self.backward_D_basic(self.netD_A, self.arm_a * self.img_a, fake_A, fake_B)'''
+
         pass
 
     def optimize_parameters(self, load_flag):
@@ -273,8 +252,6 @@ class DCTONModel(BaseModel):
         combine = torch.cat(tmp_pic, 2).squeeze()
         cv_img = (combine.permute(1, 2, 0).detach().cpu().numpy() + 1) / 2
         rgb = (cv_img * 255).astype(np.uint8)
-        # bgr = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
-        # cv2.imwrite('/apdcephfs/share_1290939/chongjiange/train_output/cycletryon/sample/test.jpg', rgb)
         return rgb
 
     def save_pics(self, pic_list, id, name):
@@ -290,7 +267,7 @@ class DCTONModel(BaseModel):
         cv_img = (combine.permute(1, 2, 0).detach().cpu().numpy() + 1) / 2
         rgb = (cv_img * 255).astype(np.uint8)
         bgr = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
-        directory = '/apdcephfs/share_1016399/chongjiange/train_output/cycletryon/test_sample/' + name + '_test/'
+        directory = '/' + name + '_test/'
         if not os.path.exists(directory):
             os.makedirs(directory)
         cv2.imwrite(directory + str(id) + '.jpg', bgr)

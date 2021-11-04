@@ -1436,7 +1436,6 @@ class Encoder(nn.Module):
 class UnetResEncoderBlock(nn.Module):
     def __init__(self, input_nc, inner_nc, outermost=False, innermost=False, norm_layer=nn.BatchNorm2d, use_dropout=False):
         super(UnetResEncoderBlock, self).__init__()
-        print('here is '+ str(inner_nc))
         # component definition
         downconv = nn.Conv2d(input_nc, inner_nc, kernel_size=3,
                              stride=2, padding=1, bias=False)

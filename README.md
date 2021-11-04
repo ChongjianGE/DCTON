@@ -1,22 +1,20 @@
-# Disentangled Cycle Consistency for Highly-realistic Virtual Try-On, CVPR 2021
-[WIP] The code for CVPR 2021 paper 'Disentangled Cycle Consistency for Highly-realistic Virtual Try-On'
+# DCTON (CVPR 2021)
+
+**Disentangled Cycle Consistency for Highly-realistic Virtual Try-On (https://arxiv.org/abs/2103.09479)**
+
 ![image](https://github.com/ChongjianGE/DCTON/blob/main/image/show.png?raw=true)
 
-## ENV Requirements
-python 3.6
-
-pytorch 1.0.0
-
-torchvision 0.3.0
-
-cuda 10.0
-
-opencv
+## Prerequisites
+- python 3.6
+- pytorch 1.0.0
+- torchvision 0.3.0
+- cuda 10.0
+- opencv
 
 ## Dataset
-1.VITON 
+[VITON](https://github.com/xthan/VITON)
 
-2.VITON-HQ (collected by ourself)
+## Run the Demo
 
 ## Citation
 ```

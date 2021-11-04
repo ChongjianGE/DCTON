@@ -17,7 +17,6 @@ if __name__ == '__main__':
     dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
     model = create_model(opt)      # create a model given opt.model and other options
     model.setup(opt)               # regular setup: load and print networks; create schedulers
-    model.setup(opt)
     res = []
     for i, data in enumerate(dataset):
         start = time.time()
@@ -29,8 +28,7 @@ if __name__ == '__main__':
         model.test(name)           # run inference
         end = time.time()
         res.append(end - start)
-        if i % 50 == 0:  # save images to an HTML file
-            print('processing (%04d)-th image... ' % (i))
+        print('processing (%04d)-th image... ' % (i))
     print('Finish the processing')
 
 
