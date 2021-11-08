@@ -267,7 +267,7 @@ class DCTONModel(BaseModel):
         cv_img = (combine.permute(1, 2, 0).detach().cpu().numpy() + 1) / 2
         rgb = (cv_img * 255).astype(np.uint8)
         bgr = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)
-        directory = '/' + name + '_test/'
+        directory = './' + name + '_test/'
         if not os.path.exists(directory):
             os.makedirs(directory)
         cv2.imwrite(directory + str(id) + '.jpg', bgr)
